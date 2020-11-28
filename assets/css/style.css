@@ -1,6 +1,7 @@
 body {
     background-color: black;
     color: white;
+    font-family: "Allerta", sans-serif
 }
 
 .player-info-area {
@@ -8,4 +9,16 @@ body {
     font-size: 250%;
     font-family: "Allerta Stencil", sans-serif;
     margin-top: 6%;
+}
+
+.scoreTable {
+    text-align: center;
+    justify-content: center;
+    margin: 5% auto;
+    width: 50%;
+    font-size: 200%;
+}
+
+.scoreTable, th, td {
+    border: solid 3px white;
 }
