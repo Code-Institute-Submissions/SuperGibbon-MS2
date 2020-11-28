@@ -29,14 +29,20 @@ body {
 
 /* Card area */
 
+.score-counter {
+    text-align: center;
+    font-size: 150%;
+    margin: 20px 0px;
+}
+
 .card-row {
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 .card-area {
     display: flex;
-    padding-left: 2%;
-    padding-right: 2%;
+    
     flex-wrap: wrap;
     height: 500px;
     max-width: 600px;
