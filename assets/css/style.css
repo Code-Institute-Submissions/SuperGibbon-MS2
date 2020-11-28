@@ -2,3 +2,10 @@ body {
     background-color: black;
     color: white;
 }
+
+.player-info-area {
+    text-align: center;
+    font-size: 250%;
+    font-family: "Allerta Stencil", sans-serif;
+    margin-top: 6%;
+}
