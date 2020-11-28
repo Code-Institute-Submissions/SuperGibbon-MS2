@@ -29,7 +29,9 @@ body {
 
 /* Card area */
 
-
+.card-row {
+    justify-content: center;
+}
 
 .card-area {
     display: flex;
