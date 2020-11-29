@@ -42,7 +42,6 @@ body {
 
 .card-area {
     display: flex;
-    
     flex-wrap: wrap;
     height: 500px;
     max-width: 600px;
@@ -60,7 +59,7 @@ body {
 .playing-card img {
     max-width: 100%;
     max-height: 100%;
-    display: block;
+    display: absolute;
 }
 
 /* Why play */

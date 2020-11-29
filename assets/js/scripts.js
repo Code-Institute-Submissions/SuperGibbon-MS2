@@ -10,3 +10,11 @@ $("#homeBtn").click(function() {
     $(".whyPlay-container").addClass("d-none")
     $(".aboutHidden").removeClass("d-none")  
 })
+
+/* Play game button */
+
+$("#gameStart").click(function() {
+    $(".aboutHidden").addClass("d-none")
+    $(".whyPlay-container").addClass("d-none")
+    $(".card-container").removeClass("d-none")   
+})
