@@ -11,7 +11,7 @@ $("#homeBtn").click(function() {
     $(".aboutHidden").removeClass("d-none")  
 })
 
-/* Play game button */
+/* Play game button - need to add error if name empty*/ 
 
 $("#gameStart").click(function() {
     $(".aboutHidden").addClass("d-none")

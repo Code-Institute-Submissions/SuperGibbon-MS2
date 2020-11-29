@@ -4,6 +4,22 @@ body {
     font-family: "Allerta", sans-serif
 }
 
+/* Nav bar */
+
+.navbutton {
+    font-size: 120%;
+    margin: 0 10px;
+    border: solid 1px white;
+    padding: 5px;
+}
+
+.navbar-brand {
+    font-size: 120%;
+    border: solid 1px white;
+    padding: 5px;
+    margin: 0 10px;
+}
+
 /* player info area */
 
 .player-info-area {
@@ -65,11 +81,11 @@ body {
 /* Why play */
 
 .whyPlay {
-    text-align: center;
-    
+    text-align: center;  
 }
 
 .whyPlay-header {
     font-family: "Allerta Stencil", sans-serif;
-    margin-bottom: 10px;
+    margin-bottom: 5%;
+    margin-top: 6%;
 }
