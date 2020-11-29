@@ -6,7 +6,6 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <meta name="Description" content=""/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.2/cosmo/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Allerta&family=Allerta+Stencil&display=swap" rel="stylesheet">
@@ -27,7 +26,7 @@
                                 <a href="#" class="navbar-brand d-none d-sm-block">Memory Madness</a>
                                 <ul class="navbar-nav nav list-inline">
                                     <li class="nav-item list-inline-item"><a class="active nav-link" href="index.html">Play</a></li>
-                                    <li class="nav-item list-inline-item"><a class="nav-link" href="">Helping your memory</a></li>
+                                    <li class="button list-inline-item"><a id="whyPlayBtn">Helping your memory</a></li>
                                 </ul>                        
                             </div>
                     </nav> 
@@ -36,7 +35,7 @@
     </div>
 
 <!-- Player Start Area -->
-<div class="container payer-info-container">
+<div class="container player-info-container aboutHidden">
     <div class="row">
         <div class="player-info-area col-12">
             <form id="player-info">
@@ -50,7 +49,7 @@
 
 <!-- Current Score table -->
 
-<div class="container-fluid scoreTable-container">
+<div class="container-fluid scoreTable-container aboutHidden">
     <div class="row">
         <div class="col-12">
             <table class="scoreTable" id="scoreTable">
@@ -101,7 +100,7 @@
 
 <!-- Game Area -->
 
-<div class="container card-container">
+<div class="container card-container d-none aboutHidden">
     <div class="row card-row">
         <div class="score-counter col-12">
                 <div class="clicks">Number of clicks</div>
@@ -176,7 +175,7 @@
     </div>
 </div>
 
-<div class="container whyPlay-container">
+<div class="container whyPlay-container d-none">
     <div class="row">
         <div class="whyPlay col-12">
             <h2 class="whyPlay-header">
