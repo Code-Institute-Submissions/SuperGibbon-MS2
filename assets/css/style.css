@@ -62,3 +62,15 @@ body {
     max-height: 100%;
     display: block;
 }
+
+/* Why play */
+
+.whyPlay {
+    text-align: center;
+    
+}
+
+.whyPlay-header {
+    font-family: "Allerta Stencil", sans-serif;
+    margin-bottom: 10px;
+}
