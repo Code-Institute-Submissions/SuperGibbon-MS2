@@ -70,6 +70,7 @@ body {
     border: solid 1px pink;
     position: relative;
     margin: 1%;
+    background-color: white;
 }
 
 .front-card, .back-card{

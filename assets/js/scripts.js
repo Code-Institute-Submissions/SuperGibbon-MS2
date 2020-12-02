@@ -1,14 +1,3 @@
-/* Flipping card */
-
-const cards = document.querySelectorAll(".playing-card");
-
-function flippingCard () {
-    this.firstElementChild.classList.toggle("d-none")
-    this.firstElementChild.nextElementSibling.classList.toggle("d-none")
-}
-
-cards.forEach(card => card.addEventListener('click', flippingCard));
-
 /* Nav bar buttons */
 
 $("#whyPlayBtn").click(function() {
@@ -29,3 +18,15 @@ $("#gameStart").click(function() {
     $(".whyPlay-container").addClass("d-none")
     $(".card-container").removeClass("d-none")   
 })
+
+/* Flipping card */
+
+const cards = document.querySelectorAll(".playing-card");
+
+function flippingCard () {
+    this.firstElementChild.classList.toggle("d-none")
+    this.firstElementChild.nextElementSibling.classList.toggle("d-none")
+}
+
+cards.forEach(card => card.addEventListener("click", flippingCard));
+
