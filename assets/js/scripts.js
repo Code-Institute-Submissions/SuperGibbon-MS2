@@ -26,6 +26,8 @@ const flipClass = document.querySelectorAll(".flip")
 
 let firstClickCard, secondClickCard;
 
+let lockAfterMatch = false;
+
 function checkMatch() {
     if (flipClass[0] === flipClass[1]) {
         
@@ -38,13 +40,48 @@ function checkMatch() {
     
 }*/
 
-function flippingCard () {
-    this.classList.add("flip")
-    this.firstElementChild.classList.remove("d-none");
-    this.firstElementChild.nextElementSibling.classList.add("d-none");  
-    if (flipClass.length === 2) {
-        checkMatch
-    }  
+function flippingCard (event) {
+    if (lockAfterMatch) {
+        return;
+    }
+    console.log("event");
+    faceCardUp(this);
+    checkCards(this);
+}
+
+function faceCardUp(card) {
+    card.classList.add("flip");
+    card.firstElementChild.classList.remove("d-none");
+    card.firstElementChild.nextElementSibling.classList.add("d-none");  
+}
+
+function faceCardDown(card) {
+    card.classList.remove("flip");
+    card.firstElementChild.classList.add("d-none");
+    card.firstElementChild.nextElementSibling.classList.remove("d-none");   
+}
+
+function checkCards(currentCard) {
+    if (firstClickCard) {
+        if (firstClickCard.dataset.card === currentCard.dataset.card) {
+            firstClickCard.classList.add("invis");
+            firstClickCard = null;
+            currentCard.classList.add("invis");
+            currentCard = null;
+            console.log("card match");
+        } else {
+            lockAfterMatch = true;
+            setTimeout(function(){
+                faceCardDown(firstClickCard);
+                faceCardDown(currentCard);
+                firstClickCard = null;
+                lockAfterMatch = false;
+            }, 3000);
+            
+        } 
+    } else {
+        firstClickCard = currentCard;
+    }
 }
 
 function unflippingCard () {
