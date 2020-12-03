@@ -1,5 +1,7 @@
 https://sites.google.com/site/memoryproblems01/the-importance-of-memory-games - whyplay paragraph
 
+This project is designed as a memory game to help improve your memory and have some fun while doing so. It includes a click counter so that improvement progress can be tracked.
+Information is also available to show the user why playing games like this are good for your memory and the effects it can have.
 
 ## User Stories
 
@@ -12,6 +14,15 @@ https://sites.google.com/site/memoryproblems01/the-importance-of-memory-games - 
 4. As a user I want to learn how playing memory games can help improve my memory.
 
 5. As a user I want to be able to play on my mobile phone so I can play on the move.
+
+## Features
+
+## Tech used
+
+## Testing
+
+
+
 
 ## Bugs 
 

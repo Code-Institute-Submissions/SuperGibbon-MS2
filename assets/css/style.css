@@ -79,6 +79,10 @@ body {
     display: absolute;
 }
 
+.invis {
+    visibility: hidden;
+}
+
 /* Why play */
 
 .whyPlay {

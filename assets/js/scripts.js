@@ -22,11 +22,33 @@ $("#gameStart").click(function() {
 /* Flipping card */
 
 const cards = document.querySelectorAll(".playing-card");
+const flipClass = document.querySelectorAll(".flip")
+
+let firstClickCard, secondClickCard;
+
+function checkMatch() {
+    if (flipClass[0] === flipClass[1]) {
+        
+        /*  makeHidden(); */ /* yet to be written*/
+        return;
+    }
+}
+
+/*function makeHidden() {
+    
+}*/
 
 function flippingCard () {
-    this.firstElementChild.classList.toggle("d-none")
-    this.firstElementChild.nextElementSibling.classList.toggle("d-none")
+    this.classList.add("flip")
+    this.firstElementChild.classList.remove("d-none");
+    this.firstElementChild.nextElementSibling.classList.add("d-none");  
+    if (flipClass.length === 2) {
+        checkMatch
+    }  
+}
+
+function unflippingCard () {
+    
 }
 
 cards.forEach(card => card.addEventListener("click", flippingCard));
-
