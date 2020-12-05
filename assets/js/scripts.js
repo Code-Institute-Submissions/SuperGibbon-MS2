@@ -12,6 +12,8 @@ $("#homeBtn").click(function() {
     $(".card-container").addClass("d-none")
 })
 
+/* constants and variables */
+
 const cards = document.querySelectorAll(".playing-card");
 const maxTime = 90
 
@@ -20,6 +22,7 @@ let lockAfterMatch = false;
 let cardMatch = []
 let clickCount = 0
 
+
 /* Start Game */
 $("#gameStart").click(function() {
     $(".aboutHidden").addClass("d-none")
@@ -27,10 +30,19 @@ $("#gameStart").click(function() {
     $(".card-container").removeClass("d-none")
     clickCount = 0;
     cardMatch.length = 0;
+    currentCard = null;
     cards.forEach(card => card.classList.remove("invis"));
     cards.forEach(faceCardDown);
+    shuffle();
 })
 
+/* Shuffle Cards - this was not my own work please see README for credit*/
+function shuffle() {
+    cards.forEach(card => {
+        let ramdomPos = Math.floor(Math.random() * 16);
+        card.style.order = ramdomPos;
+  });
+}
 
 /* Flip card */
 

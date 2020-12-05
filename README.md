@@ -1,5 +1,7 @@
 https://sites.google.com/site/memoryproblems01/the-importance-of-memory-games - whyplay paragraph
 
+https://medium.com/free-code-camp/vanilla-javascript-tutorial-build-a-memory-game-in-30-minutes-e542c4447eae - shuffle cards
+
 This project is designed as a memory game to help improve your memory and have some fun while doing so. It includes a click counter so that improvement progress can be tracked.
 Information is also available to show the user why playing games like this are good for your memory and the effects it can have.
 
