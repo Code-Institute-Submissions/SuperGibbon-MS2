@@ -8,24 +8,29 @@ $("#whyPlayBtn").click(function() {
 
 $("#homeBtn").click(function() {
     $(".whyPlay-container").addClass("d-none")
-    $(".aboutHidden").removeClass("d-none")  
+    $(".aboutHidden").removeClass("d-none")
+    $(".card-container").addClass("d-none")
 })
-
-/* Play game button - need to add error if name empty*/ 
-
-$("#gameStart").click(function() {
-    $(".aboutHidden").addClass("d-none")
-    $(".whyPlay-container").addClass("d-none")
-    $(".card-container").removeClass("d-none")   
-})
-
-
 
 const cards = document.querySelectorAll(".playing-card");
+const maxTime = 90
 
 let firstClickCard, currentCard;
 let lockAfterMatch = false;
 let cardMatch = []
+let clickCount = 0
+
+/* Start Game */
+$("#gameStart").click(function() {
+    $(".aboutHidden").addClass("d-none")
+    $(".whyPlay-container").addClass("d-none")
+    $(".card-container").removeClass("d-none")
+    clickCount = 0;
+    cardMatch.length = 0;
+    cards.forEach(card => card.classList.remove("invis"));
+    cards.forEach(faceCardDown);
+})
+
 
 /* Flip card */
 
@@ -58,7 +63,10 @@ function endGame() {
     alert("you win")
 }
 
-/* Check card match function - unflips cards if not a match */
+/* Render Score Table */
+
+
+/* Check card match function - unflips cards if not a match - also adds click count on click*/
 
 function checkCards(currentCard) {
     if (firstClickCard) {
@@ -69,6 +77,7 @@ function checkCards(currentCard) {
             cardMatch.push(currentCard.getAttribute('data-card'))
             currentCard.classList.add("invis");
             currentCard = null;
+            clickCount++;
             if (cardMatch.length === 16) {
                 endGame()
             }
@@ -81,10 +90,11 @@ function checkCards(currentCard) {
                 firstClickCard = null;
                 lockAfterMatch = false;
             }, 1000);
-            
+            clickCount++;            
         } 
     } else {
         firstClickCard = currentCard;
+        clickCount++;
     }
 }
 
