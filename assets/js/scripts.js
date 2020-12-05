@@ -19,26 +19,15 @@ $("#gameStart").click(function() {
     $(".card-container").removeClass("d-none")   
 })
 
-/* Flipping card */
+
 
 const cards = document.querySelectorAll(".playing-card");
-const flipClass = document.querySelectorAll(".flip")
 
-let firstClickCard, secondClickCard;
-
+let firstClickCard, currentCard;
 let lockAfterMatch = false;
+let cardMatch = []
 
-function checkMatch() {
-    if (flipClass[0] === flipClass[1]) {
-        
-        /*  makeHidden(); */ /* yet to be written*/
-        return;
-    }
-}
-
-/*function makeHidden() {
-    
-}*/
+/* Flip card */
 
 function flippingCard (event) {
     if (lockAfterMatch) {
@@ -48,6 +37,8 @@ function flippingCard (event) {
     faceCardUp(this);
     checkCards(this);
 }
+
+/* functions to hide and unhide based on flipping cards */
 
 function faceCardUp(card) {
     card.classList.add("flip");
@@ -61,13 +52,26 @@ function faceCardDown(card) {
     card.firstElementChild.nextElementSibling.classList.remove("d-none");   
 }
 
+/* End Game  */
+
+function endGame() {
+    alert("you win")
+}
+
+/* Check card match function - unflips cards if not a match */
+
 function checkCards(currentCard) {
     if (firstClickCard) {
         if (firstClickCard.dataset.card === currentCard.dataset.card) {
+            cardMatch.push(firstClickCard.getAttribute('data-card'))
             firstClickCard.classList.add("invis");
             firstClickCard = null;
+            cardMatch.push(currentCard.getAttribute('data-card'))
             currentCard.classList.add("invis");
             currentCard = null;
+            if (cardMatch.length === 16) {
+                endGame()
+            }
             console.log("card match");
         } else {
             lockAfterMatch = true;
@@ -76,16 +80,12 @@ function checkCards(currentCard) {
                 faceCardDown(currentCard);
                 firstClickCard = null;
                 lockAfterMatch = false;
-            }, 3000);
+            }, 1000);
             
         } 
     } else {
         firstClickCard = currentCard;
     }
-}
-
-function unflippingCard () {
-    
 }
 
 cards.forEach(card => card.addEventListener("click", flippingCard));
