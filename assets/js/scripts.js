@@ -1,15 +1,15 @@
 /* Nav bar buttons */
 
 $("#whyPlayBtn").click(function() {
-    $(".aboutHidden").addClass("d-none")
-    $(".card-container").addClass("d-none")
-    $(".whyPlay-container").removeClass("d-none")
+    $(".aboutHidden").addClass("d-none");
+    $(".card-container").addClass("d-none");
+    $(".whyPlay-container").removeClass("d-none");
 })
 
 $("#homeBtn").click(function() {
-    $(".whyPlay-container").addClass("d-none")
-    $(".aboutHidden").removeClass("d-none")
-    $(".card-container").addClass("d-none")
+    $(".whyPlay-container").addClass("d-none");
+    $(".aboutHidden").removeClass("d-none");
+    $(".card-container").addClass("d-none");
 })
 
 /* constants and variables */
@@ -19,15 +19,22 @@ const maxTime = 90
 
 let firstClickCard, currentCard;
 let lockAfterMatch = false;
-let cardMatch = []
-let clickCount = 0
+let cardMatch = [];
+let clickCount = 0;
+let previousScores = [];
+
+let currentScore = {
+    playerName : document.getElementById("player-name"),
+    score : clickCount,
+    // time : timeLeft
+}
 
 
 /* Start Game */
 $("#gameStart").click(function() {
-    $(".aboutHidden").addClass("d-none")
-    $(".whyPlay-container").addClass("d-none")
-    $(".card-container").removeClass("d-none")
+    $(".aboutHidden").addClass("d-none");
+    $(".whyPlay-container").addClass("d-none");
+    $(".card-container").removeClass("d-none");
     clickCount = 0;
     cardMatch.length = 0;
     currentCard = null;
@@ -36,7 +43,11 @@ $("#gameStart").click(function() {
     shuffle();
 })
 
+
+
+
 /* Shuffle Cards - this was not my own work please see README for credit*/
+
 function shuffle() {
     cards.forEach(card => {
         let ramdomPos = Math.floor(Math.random() * 16);
@@ -72,10 +83,13 @@ function faceCardDown(card) {
 /* End Game  */
 
 function endGame() {
-    alert("you win")
+    previousScores.push(currentScore);
+    console.log(currentScore);
+    currentScore = null;
 }
 
 /* Render Score Table */
+
 
 
 /* Check card match function - unflips cards if not a match - also adds click count on click*/
