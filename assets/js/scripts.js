@@ -4,18 +4,19 @@ $("#whyPlayBtn").click(function() {
     $(".aboutHidden").addClass("d-none");
     $(".card-container").addClass("d-none");
     $(".whyPlay-container").removeClass("d-none");
-})
+});
 
 $("#homeBtn").click(function() {
     $(".whyPlay-container").addClass("d-none");
     $(".aboutHidden").removeClass("d-none");
     $(".card-container").addClass("d-none");
-})
+});
 
 /* constants and variables */
 
 const cards = document.querySelectorAll(".playing-card");
-const maxTime = 90
+// const maxTime = 90;
+const clickCountEl = document.getElementById("clickCount");
 
 let firstClickCard, currentCard;
 let lockAfterMatch = false;
@@ -24,26 +25,43 @@ let clickCount = 0;
 let previousScores = [];
 
 let currentScore = {
-    playerName : document.getElementById("player-name"),
-    score : clickCount,
-    // time : timeLeft
-}
+    playerName : "",
+    score: 0,
+    timeLeft: 0,
+    totalClicks: 0
+};
+
+let gameTimeInSeconds = 120;
+let intervalId = null;
+let currentTime = 0;
 
 
 /* Start Game */
-$("#gameStart").click(function() {
+$("#playerInfo").on('submit', function(event) {
     $(".aboutHidden").addClass("d-none");
     $(".whyPlay-container").addClass("d-none");
     $(".card-container").removeClass("d-none");
+    currentScore.playerName = document.getElementById("playerName").value;
     clickCount = 0;
     cardMatch.length = 0;
     currentCard = null;
     cards.forEach(card => card.classList.remove("invis"));
     cards.forEach(faceCardDown);
     shuffle();
-})
+    intervalId = setInterval(renderTime, 1000);
+    return false;
+});
 
-
+function renderTime() {
+    currentTime++;
+    const elapsedTime = gameTimeInSeconds - currentTime;
+    document.getElementById("timeLeft").innerText = elapsedTime;
+    if (!elapsedTime) {
+        clearInterval(intervalId);
+        gameOver();
+    }
+}
+ 
 
 
 /* Shuffle Cards - this was not my own work please see README for credit*/
@@ -52,7 +70,11 @@ function shuffle() {
     cards.forEach(card => {
         let ramdomPos = Math.floor(Math.random() * 16);
         card.style.order = ramdomPos;
-  });
+    });
+}
+
+function renderClickCount() {
+    clickCountEl.innerText = clickCount;
 }
 
 /* Flip card */
@@ -62,6 +84,8 @@ function flippingCard (event) {
         return;
     }
     console.log("event");
+    clickCount++;
+    renderClickCount();
     faceCardUp(this);
     checkCards(this);
 }
@@ -84,8 +108,21 @@ function faceCardDown(card) {
 
 function endGame() {
     previousScores.push(currentScore);
+    localStorage.setItem("previousScores", JSON.stringify(previousScores));
     console.log(currentScore);
-    currentScore = null;
+    $(".whyPlay-container").addClass("d-none");
+    $(".aboutHidden").removeClass("d-none");
+    $(".card-container").addClass("d-none");
+}
+
+function gameOver() {
+    endGame();
+    console.log('Game Over!!!!');
+}
+
+function GameWon() {
+    endGame();
+    console.log('You Win!!!!')
 }
 
 /* Render Score Table */
@@ -97,15 +134,16 @@ function endGame() {
 function checkCards(currentCard) {
     if (firstClickCard) {
         if (firstClickCard.dataset.card === currentCard.dataset.card) {
-            cardMatch.push(firstClickCard.getAttribute('data-card'))
-            firstClickCard.classList.add("invis");
-            firstClickCard = null;
-            cardMatch.push(currentCard.getAttribute('data-card'))
-            currentCard.classList.add("invis");
-            currentCard = null;
-            clickCount++;
+            setTimeout(function(){
+                cardMatch.push(firstClickCard.getAttribute('data-card'));
+                firstClickCard.classList.add("invis");
+                firstClickCard = null;
+                cardMatch.push(currentCard.getAttribute('data-card'));
+                currentCard.classList.add("invis");
+                currentCard = null;
+            }, 300); 
             if (cardMatch.length === 16) {
-                endGame()
+                endGame();
             }
             console.log("card match");
         } else {
@@ -115,12 +153,10 @@ function checkCards(currentCard) {
                 faceCardDown(currentCard);
                 firstClickCard = null;
                 lockAfterMatch = false;
-            }, 1000);
-            clickCount++;            
+            }, 1000);         
         } 
     } else {
         firstClickCard = currentCard;
-        clickCount++;
     }
 }
 
