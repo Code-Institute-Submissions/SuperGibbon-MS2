@@ -5,6 +5,12 @@ https://medium.com/free-code-camp/vanilla-javascript-tutorial-build-a-memory-gam
 This project is designed as a memory game to help improve your memory and have some fun while doing so. It includes a click counter so that improvement progress can be tracked.
 Information is also available to show the user why playing games like this are good for your memory and the effects it can have.
 
+# Memory Match - a game to improve your memory
+
+## UX
+
+This game was designed to help with memory so when designing UX I wanted to keep it as simple as possible
+
 ## User Stories
 
 1. As a user I want to play a game that is fun and based around improving memory.

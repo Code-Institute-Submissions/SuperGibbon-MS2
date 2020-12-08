@@ -20,6 +20,12 @@ body {
     margin: 0 10px;
 }
 
+.navbar-toggler {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
 /* player info area */
 
 .player-info-area {
@@ -27,6 +33,10 @@ body {
     font-size: 250%;
     font-family: "Allerta Stencil", sans-serif;
     margin-top: 6%;
+}
+
+#playerInfo {
+    justify-content: center;
 }
 
 /* Score Table */
@@ -95,4 +105,31 @@ body {
     font-family: "Allerta Stencil", sans-serif;
     margin-bottom: 5%;
     margin-top: 6%;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 768px) {
+    .player-info-area {
+        max-width: 90%;
+    }
+    #playerName {
+        max-width: 80%;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .navbar-nav {
+        max-width: 80%;
+    }
+}
+
+@media only screen and (max-width: 510px) {
+    .playing-card {
+        max-width: 20%;
+        border: none;
+        position: relative;
+        margin: 1%;
+        background-color: black;
+    }
 }

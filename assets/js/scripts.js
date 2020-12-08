@@ -92,7 +92,6 @@ function flippingCard (event) {
     if (lockAfterMatch) {
         return;
     }
-    console.log("event");
     clickCount++;
     renderClickCount();
     faceCardUp(this);
@@ -120,7 +119,6 @@ function faceCardDown(card) {
 function endGame() {
     currentScore.score = clickCount;
         if (previousScores.length === 0) {
-            console.log("first score logged");
             updateScore();
             let scoreAttach = document.getElementById("scoreTable");
             let scoreRender = document.createElement("p");
@@ -142,7 +140,7 @@ function endGame() {
     
 }
 
-
+/* Update score and push to local storage */
 function updateScore() {
     previousScores.push(currentScore);
     localStorage.setItem("previousScores", JSON.stringify(previousScores));
@@ -164,7 +162,6 @@ function checkCards(currentCard) {
             if (cardMatch.length === 16) {
                 endGame();
             }
-            console.log("card match");
         } else {
             lockAfterMatch = true;
             setTimeout(function(){
