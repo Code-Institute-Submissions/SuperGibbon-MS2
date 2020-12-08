@@ -39,8 +39,10 @@ body {
     font-size: 200%;
 }
 
-.scoreTable, th, td {
-    border: solid 3px white;
+.score-display {
+    text-align: center;
+    font-size: 300%;
+    margin-top: 50px;
 }
 
 /* Card area */

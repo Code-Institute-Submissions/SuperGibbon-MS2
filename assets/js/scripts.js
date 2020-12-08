@@ -15,7 +15,6 @@ $("#homeBtn").click(function() {
 /* constants and variables */
 
 const cards = document.querySelectorAll(".playing-card");
-// const maxTime = 90;
 const clickCountEl = document.getElementById("clickCount");
 
 let firstClickCard, currentCard;
@@ -28,7 +27,7 @@ let currentScore = {
     playerName : "",
     score: 0,
     timeLeft: 0,
-    totalClicks: 0
+    
 };
 
 let gameTimeInSeconds = 120;
@@ -48,17 +47,25 @@ $("#playerInfo").on('submit', function(event) {
     cards.forEach(card => card.classList.remove("invis"));
     cards.forEach(faceCardDown);
     shuffle();
+    currentTime = 0;
     intervalId = setInterval(renderTime, 1000);
     return false;
 });
+
+/* Render Timer */
 
 function renderTime() {
     currentTime++;
     const elapsedTime = gameTimeInSeconds - currentTime;
     document.getElementById("timeLeft").innerText = elapsedTime;
-    if (!elapsedTime) {
+    if (cardMatch.length === 16) {
         clearInterval(intervalId);
-        gameOver();
+        endGame();
+    }else{
+        if (!elapsedTime) {
+            clearInterval(intervalId);
+            endGame();
+        }
     }
 }
  
@@ -72,6 +79,8 @@ function shuffle() {
         card.style.order = ramdomPos;
     });
 }
+
+/* Render Click Count */
 
 function renderClickCount() {
     clickCountEl.innerText = clickCount;
@@ -104,30 +113,40 @@ function faceCardDown(card) {
     card.firstElementChild.nextElementSibling.classList.remove("d-none");   
 }
 
+
+
 /* End Game  */
 
 function endGame() {
-    previousScores.push(currentScore);
-    localStorage.setItem("previousScores", JSON.stringify(previousScores));
-    console.log(currentScore);
+    currentScore.score = clickCount;
+        if (previousScores.length === 0) {
+            console.log("first score logged");
+            updateScore();
+            let scoreAttach = document.getElementById("scoreTable");
+            let scoreRender = document.createElement("p");
+            scoreRender.setAttribute("class", "score-display");
+            scoreRender.innerHTML = "Your score was " + currentScore.score;
+            scoreAttach.appendChild(scoreRender);
+        }else{
+            updateScore();
+            let scoreAttach = document.getElementById("scoreTable");
+            scoreAttach.removeChild(scoreAttach.firstElementChild);
+            let scoreRender = document.createElement("p");
+            scoreRender.setAttribute("class", "score-display");
+            scoreRender.innerHTML = "Your score was " + currentScore.score;
+            scoreAttach.appendChild(scoreRender);
+        }
     $(".whyPlay-container").addClass("d-none");
     $(".aboutHidden").removeClass("d-none");
     $(".card-container").addClass("d-none");
+    
 }
 
-function gameOver() {
-    endGame();
-    console.log('Game Over!!!!');
+
+function updateScore() {
+    previousScores.push(currentScore);
+    localStorage.setItem("previousScores", JSON.stringify(previousScores));
 }
-
-function GameWon() {
-    endGame();
-    console.log('You Win!!!!')
-}
-
-/* Render Score Table */
-
-
 
 /* Check card match function - unflips cards if not a match - also adds click count on click*/
 
@@ -141,7 +160,7 @@ function checkCards(currentCard) {
                 cardMatch.push(currentCard.getAttribute('data-card'));
                 currentCard.classList.add("invis");
                 currentCard = null;
-            }, 300); 
+            }, 200); 
             if (cardMatch.length === 16) {
                 endGame();
             }
@@ -153,7 +172,7 @@ function checkCards(currentCard) {
                 faceCardDown(currentCard);
                 firstClickCard = null;
                 lockAfterMatch = false;
-            }, 1000);         
+            }, 500);         
         } 
     } else {
         firstClickCard = currentCard;
