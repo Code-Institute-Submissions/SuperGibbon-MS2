@@ -165,6 +165,8 @@ function checkCards(currentCard) {
         } else {
             lockAfterMatch = true;
             setTimeout(function(){
+                currentCard.addEventListener("click", flippingCard);
+                firstClickCard.addEventListener("click", flippingCard);
                 faceCardDown(firstClickCard);
                 faceCardDown(currentCard);
                 firstClickCard = null;
@@ -173,6 +175,7 @@ function checkCards(currentCard) {
         } 
     } else {
         firstClickCard = currentCard;
+        currentCard.removeEventListener("click", flippingCard);
     }
 }
 
